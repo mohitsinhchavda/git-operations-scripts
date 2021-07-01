@@ -42,7 +42,7 @@ try {
             }
         }
         else {
-            console.log(`Pushed the changes! Now, You can enjoy your pizza now ${emoji.get(':pizza:')}!`);
+            console.log(`Pushed the changes! I guess now, You can enjoy your pizza ${emoji.get(':pizza:')}!`);
         }
     }
     gitPush();
