@@ -36,14 +36,13 @@ try {
             .silent(true)
             .push(remote)
             .catch(errorCallback);
-        console.log(pushedResponse, `pushedResponse`)
         if (pushedResponse && pushedResponse.pushed && Array.isArray(pushedResponse.pushed) && pushedResponse.pushed[0]) {
             if (pushedResponse.pushed[0].alreadyUpdated) {
                 console.log(`Already Updated! Go Have some ${emoji.get(':coffee:')} ${emoji.get(':smiley:')} !`);
             }
-            else {
-                console.log(`Pushed the changes! Now, You can enjoy your pizza now ${emoji.get(':pizza:')}!`);
-            }
+        }
+        else {
+            console.log(`Pushed the changes! Now, You can enjoy your pizza now ${emoji.get(':pizza:')}!`);
         }
     }
     gitPush();
