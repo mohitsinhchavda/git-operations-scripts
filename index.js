@@ -1,12 +1,12 @@
 const simpleGit = require('simple-git');
-const express = require('express');
 const path = require('path');
 const debug = require('debug');
+const emoji = require('node-emoji')
 require('dotenv').config();
 
-const app = express();
-
 const directoryPath = path.join(__dirname, "/");
+
+debug.debug('Debug:*')
 
 const git = simpleGit(directoryPath, { binary: 'git' });
 
@@ -16,7 +16,11 @@ const PASSWORD = process.env.PASSWORD;
 
 let remote;
 
-debug.enable('debug:*');
+function errorCallback(e){
+    console.error(e);
+    console.log(`-----! Please try again ${emoji.get(':disappointed_relieved:')} !-----`)
+}
+
 
 try {
     async function gitPush() {
@@ -28,17 +32,21 @@ try {
                 remote = remotes[0].refs.push.replace("://", `://${GIT_USER}:${PASSWORD}@`);
             }
         }
-        const pushRes = await git.silent(true).push(remote);
-        console.log(pushRes);
+        const pushedResponse = await git
+            .silent(true)
+            .push(remote)
+            .catch(errorCallback);
+        if (pushedResponse && pushedResponse.pushed && Array.isArray(pushedResponse.pushed)) {
+            if (pushedResponse.pushed[0].alreadyUpdated) {
+                console.log(`Already Updated! Go Have some ${emoji.get(':coffee:')} ${emoji.get(':smiley:')} !`);
+            }
+            else {
+                console.log(`Pushed the changes! Now, You can enjoy your pizza now ${emoji.get(':pizza:')}!`);
+            }
+        }
     }
     gitPush();
 }
 catch (e) {
-    console.error(r);
+    errorCallback(e);
 }
-
-const server = app.listen(3000);
-
-server.close(() => {
-    console.log('Http server closed.');
-});
