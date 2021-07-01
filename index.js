@@ -36,6 +36,7 @@ try {
             .silent(true)
             .push(remote)
             .catch(errorCallback);
+        console.log(pushedResponse, `pushedResponse`)
         if (pushedResponse && pushedResponse.pushed && Array.isArray(pushedResponse.pushed) && pushedResponse.pushed[0]) {
             if (pushedResponse.pushed[0].alreadyUpdated) {
                 console.log(`Already Updated! Go Have some ${emoji.get(':coffee:')} ${emoji.get(':smiley:')} !`);
