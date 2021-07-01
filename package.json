@@ -1,0 +1,21 @@
+{
+  "name": "gitscripts",
+  "version": "1.0.0",
+  "description": "to run git auth",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "keywords": [
+    "node",
+    "git"
+  ],
+  "author": "Mohit Chavda <mohit.chavda1997@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "debug": "^4.3.1",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "simple-git": "^2.40.0"
+  }
+}
